@@ -17,9 +17,11 @@ package net.LoadingChunks.NSCPortals;
     along with Foobar. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.bukkit.Location;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -37,6 +39,8 @@ public class NSCPortals extends JavaPlugin {
 	private final NSCPortalsCommandExecutor commandExecutor = new NSCPortalsCommandExecutor(this);
 	private final NSCPortalsEventListener eventListener = new NSCPortalsEventListener(this);
 	//ClassListeners
+	
+	private HashMap<String, NSCPortal> portals = new HashMap<String, NSCPortal>();
 
 	public void onDisable() {
 		// Nothing.
@@ -66,6 +70,25 @@ public class NSCPortals extends JavaPlugin {
 		ConfigurationSection p = this.getConfig().getConfigurationSection("portals");
 		
 		for(Entry<String, Object> e : p.getValues(false).entrySet())
-			this.getLogger().info(e.getKey() + " : " + e.getValue().toString());
+		{
+			ConfigurationSection portal = (ConfigurationSection)e.getValue();
+
+			NSCPortal tmp = new NSCPortal(
+					new Location(this.getServer().getWorld(portal.getString("world")), portal.getDouble("firstCorner.x"), portal.getDouble("firstCorner.y"), portal.getDouble("firstCorner.z")),
+					new Location(this.getServer().getWorld(portal.getString("world")), portal.getDouble("secondCorner.x"), portal.getDouble("seconcCorner.y"), portal.getDouble("secondCorner.z")));
+			
+			if(portal.get("exit") != null)
+				tmp.setExit(new Location(this.getServer().getWorld(portal.getString("exit.world")), portal.getDouble("exit.x"), portal.getDouble("exit.y"), portal.getDouble("exit.z")));
+			else if(portal.get("server") != null)
+				tmp.setServer(portal.getString("server"));
+			
+			addPortal(e.getKey(), tmp);
+			this.getLogger().info("Added " + e.getKey() + " : " + tmp.toString());
+		}
+	}
+	
+	public void addPortal(String name, NSCPortal p)
+	{
+		this.portals.put(name, p);
 	}
 }

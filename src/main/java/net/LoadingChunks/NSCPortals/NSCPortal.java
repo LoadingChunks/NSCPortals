@@ -45,4 +45,16 @@ public class NSCPortal {
 	public String getServer() {
 		return this.server;
 	}
+	
+	public void setServer(String s) {
+		this.server = s;
+	}
+	
+	public void setExit(Location l) {
+		this.exit = l;
+	}
+	
+	public String toString() {
+		return firstXY.getX() + "," + firstXY.getY() + "," + firstXY.getZ() + " to " + lastXY.getX() + "," + lastXY.getY() + "," + lastXY.getZ() + " in " + firstXY.getWorld().getName();
+	}
 }
