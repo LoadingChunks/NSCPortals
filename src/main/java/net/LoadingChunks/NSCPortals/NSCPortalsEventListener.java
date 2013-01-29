@@ -22,6 +22,7 @@ import org.bukkit.Location;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
@@ -54,8 +55,15 @@ public class NSCPortalsEventListener implements Listener {
 					event.getPlayer().teleport(p.getExit());
 				} else {
 					event.getPlayer().sendMessage("Sending you to " + p.getServer());
+					
+					/* Until I get the forwarder working, gonna have to do this... */
+					if(this.plugin.getConfig().get("locations." + loc.getWorld().getName()) != null) {
+						ConfigurationSection newloc = this.plugin.getConfig().getConfigurationSection("locations." + loc.getWorld().getName());
+						event.getPlayer().teleport(new Location(loc.getWorld(), newloc.getDouble("x"), newloc.getDouble("y"), newloc.getDouble("z"), (float)newloc.getDouble("yaw"), (float)newloc.getDouble("pitch")));
+					}
+					
 					this.plugin.getCoilAPI().connectPlayerToServer(event.getPlayer(), p.getServer());
-					this.plugin.getCoilAPI().sendToServerAsPlayer(event.getPlayer(), p.getServer(), "NSCPortals", "tp");
+					//this.plugin.getCoilAPI().sendToServerAsPlayer(event.getPlayer(), p.getServer(), "NSCPortals", "tp");
 				}
 				return;
 			}
