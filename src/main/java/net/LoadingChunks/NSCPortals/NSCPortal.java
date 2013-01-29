@@ -55,7 +55,8 @@ public class NSCPortal {
 	}
 	
 	public String toString() {
-		return firstXY.getX() + "," +
+		return
+				firstXY.getX() + "," +
 				firstXY.getY() + "," +
 				firstXY.getZ() + " to " +
 				lastXY.getX() + "," +
