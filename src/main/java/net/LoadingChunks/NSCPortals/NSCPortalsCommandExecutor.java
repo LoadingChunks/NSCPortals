@@ -48,6 +48,8 @@ public class NSCPortalsCommandExecutor implements CommandExecutor {
         		} else {
         			sender.sendMessage("Debugger disabled.");
         		}
+        		
+        		return true;
         	}
         }
         return false;

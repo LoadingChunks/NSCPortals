@@ -16,7 +16,7 @@ public class NSCPortal {
 	
 	public Boolean isBetween(double first, double second, double test)
 	{
-		return second > first ? test > first && test < second : test > second && test < first;
+		return (second > first) ? (test > first && test < second) : (test > second && test < first);
 	}
 	
 	public Boolean inPortal(Location entity) {

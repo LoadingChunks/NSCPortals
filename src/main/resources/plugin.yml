@@ -5,4 +5,4 @@ version: 0.2
 commands:
    nsc:
       description: Handles NSC commands. Only reloads for now.
-      usage: /<command> <command>
+      usage: /<command> <args>

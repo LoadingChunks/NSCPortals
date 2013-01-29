@@ -35,13 +35,6 @@ public class NSCPortalsEventListener implements Listener {
 		this.plugin = plugin;
 	}
 
-	// This is just one possible event you can hook.
-	// See http://jd.bukkit.org/apidocs/ for a full event list.
-
-	// All event handlers must be marked with the @EventHandler annotation 
-	// The method name does not matter, only the type of the event parameter
-	// is used to distinguish what is handled.
-
 	@EventHandler
 	public void onPlayerMove(PlayerMoveEvent event) {
 		Location loc = event.getPlayer().getLocation();
@@ -60,6 +53,7 @@ public class NSCPortalsEventListener implements Listener {
 				{
 					event.getPlayer().teleport(p.getExit());
 				} else {
+					event.getPlayer().sendMessage("Sending you to " + p.getServer());
 					this.plugin.getCoilAPI().connectPlayerToServer(event.getPlayer(), p.getServer());
 				}
 				return;
