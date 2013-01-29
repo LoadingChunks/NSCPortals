@@ -40,6 +40,14 @@ public class NSCPortalsCommandExecutor implements CommandExecutor {
         		else
         			sender.sendMessage("You must be an OP to do that!");
         		return true;
+        	} else if(args.length > 0 && args[0].equalsIgnoreCase("debug"))
+        	{
+        		if(this.plugin.toggleDebug())
+        		{
+        			sender.sendMessage("Debugger enabled.");
+        		} else {
+        			sender.sendMessage("Debugger disabled.");
+        		}
         	}
         }
         return false;

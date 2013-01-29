@@ -53,6 +53,9 @@ public class NSCPortalsEventListener implements Listener {
 			
 			if(p.inPortal(loc))
 			{
+				if(this.plugin.isDebug() && event.getPlayer().isOp()) {
+					event.getPlayer().sendMessage("You just stood in a portal!");
+				}
 				if(p.isLocal())
 				{
 					event.getPlayer().teleport(p.getExit());

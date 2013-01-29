@@ -43,6 +43,8 @@ public class NSCPortals extends JavaPlugin {
 	private HashMap<String, NSCPortal> portals = new HashMap<String, NSCPortal>();
 	
 	private Coil coil;
+	
+	private Boolean debug = false;
 
 	public void onDisable() {
 		// Nothing.
@@ -82,7 +84,6 @@ public class NSCPortals extends JavaPlugin {
 				this.getLogger().warning("The world in question doesn't exist... you should probably look into that or remove this portal.");
 				continue;
 			}
-			
 
 			NSCPortal tmp = new NSCPortal(
 					new Location(this.getServer().getWorld(portal.getString("world")), portal.getDouble("firstCorner.x"), portal.getDouble("firstCorner.y"), portal.getDouble("firstCorner.z")),
@@ -121,5 +122,18 @@ public class NSCPortals extends JavaPlugin {
 			e.printStackTrace();
 		}
 		return this.coil;
+	}
+	
+	public Boolean toggleDebug() {
+		if(this.debug)
+			this.debug = false;
+		else
+			this.debug = true;
+		
+		return this.debug;
+	}
+	
+	public Boolean isDebug() {
+		return this.debug;
 	}
 }
