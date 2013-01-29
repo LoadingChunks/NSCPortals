@@ -72,6 +72,8 @@ public class NSCPortals extends JavaPlugin {
 		for(Entry<String, Object> e : p.getValues(false).entrySet())
 		{
 			ConfigurationSection portal = (ConfigurationSection)e.getValue();
+			
+			this.getLogger().info("Found portal in " + portal.getString("world"));
 
 			NSCPortal tmp = new NSCPortal(
 					new Location(this.getServer().getWorld(portal.getString("world")), portal.getDouble("firstCorner.x"), portal.getDouble("firstCorner.y"), portal.getDouble("firstCorner.z")),
