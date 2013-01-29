@@ -55,6 +55,7 @@ public class NSCPortalsEventListener implements Listener {
 				} else {
 					event.getPlayer().sendMessage("Sending you to " + p.getServer());
 					this.plugin.getCoilAPI().connectPlayerToServer(event.getPlayer(), p.getServer());
+					this.plugin.getCoilAPI().sendToServerAsPlayer(event.getPlayer(), p.getServer(), "NSCPortals", "tp");
 				}
 				return;
 			}
