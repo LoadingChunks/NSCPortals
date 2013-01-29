@@ -1,0 +1,8 @@
+name: NSCPortals
+main: net.LoadingChunks.NSCPortals.NSCPortals
+version: 0.1
+
+commands:
+   nsc:
+      description: Handles NSC commands. Only reloads for now.
+      usage: /<command> <command>
