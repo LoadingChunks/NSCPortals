@@ -13,14 +13,19 @@ public class NSCPortal {
 		this.lastXY = lastXY;
 	}
 	
+	public Boolean isBetween(double first, double second, double test)
+	{
+		return second > first ? test > first && test < second : test > second && test < first;
+	}
+	
 	public Boolean inPortal(Location entity) {
-		if(entity.getX() < firstXY.getX() || entity.getX() > lastXY.getX())
+		if(!isBetween(firstXY.getX(), lastXY.getX(), entity.getX()))
 			return false;
 		
-		if(entity.getY() < firstXY.getY() || entity.getY() > lastXY.getY())
+		if(!isBetween(firstXY.getY(), lastXY.getY(), entity.getY()))
 			return false;
 					
-		if(entity.getZ() < firstXY.getZ() || entity.getZ() > lastXY.getZ())
+		if(!isBetween(firstXY.getZ(), lastXY.getZ(), entity.getZ()))
 			return false;
 		
 		return true;

@@ -48,7 +48,7 @@ public class NSCPortals extends JavaPlugin {
 		
 		loadConfig();
 
-		getCommand("reload").setExecutor(commandExecutor);
+		getCommand("nsc").setExecutor(commandExecutor);
 
 		// you can register multiple classes to handle events if you want
 		// just call pm.registerEvents() on an instance of each class
