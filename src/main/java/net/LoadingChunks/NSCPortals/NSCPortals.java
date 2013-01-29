@@ -58,11 +58,7 @@ public class NSCPortals extends JavaPlugin {
 
 		getCommand("nsc").setExecutor(commandExecutor);
 
-		// you can register multiple classes to handle events if you want
-		// just call pm.registerEvents() on an instance of each class
 		pm.registerEvents(eventListener, this);
-
-		// do any other initialisation you need here...
 	}
 	
 	public void reloadConfig() {
@@ -87,7 +83,7 @@ public class NSCPortals extends JavaPlugin {
 
 			NSCPortal tmp = new NSCPortal(
 					new Location(this.getServer().getWorld(portal.getString("world")), portal.getDouble("firstCorner.x"), portal.getDouble("firstCorner.y"), portal.getDouble("firstCorner.z")),
-					new Location(this.getServer().getWorld(portal.getString("world")), portal.getDouble("secondCorner.x"), portal.getDouble("seconcCorner.y"), portal.getDouble("secondCorner.z")));
+					new Location(this.getServer().getWorld(portal.getString("world")), portal.getDouble("secondCorner.x"), portal.getDouble("secondCorner.y"), portal.getDouble("secondCorner.z")));
 			
 			if(portal.get("exit") != null)
 				tmp.setExit(new Location(this.getServer().getWorld(portal.getString("exit.world")), portal.getDouble("exit.x"), portal.getDouble("exit.y"), portal.getDouble("exit.z")));
@@ -118,7 +114,7 @@ public class NSCPortals extends JavaPlugin {
 			}
 		} catch(Exception e)
 		{
-			this.getLogger().severe("[DIAMONDSHARDS] Something went wrong while trying to register the SpringCoil API!");
+			this.getLogger().severe("[NSCPortals] Something went wrong while trying to register the SpringCoil API!");
 			e.printStackTrace();
 		}
 		return this.coil;
