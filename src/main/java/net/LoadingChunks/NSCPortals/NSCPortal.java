@@ -55,13 +55,14 @@ public class NSCPortal {
 	}
 	
 	public String toString() {
-		return
-				firstXY.getX() + "," +
-				firstXY.getY() + "," +
-				firstXY.getZ() + " to " +
-				lastXY.getX() + "," +
-				lastXY.getY() + "," +
-				lastXY.getZ() + " in " +
-				firstXY.getWorld().getName();
+		String str = "";
+		str = str + firstXY.getX() + ",";
+		str = str + firstXY.getY() + ",";
+		str = str + firstXY.getZ() + " to ";
+		str = str + lastXY.getX() + ",";
+		str = str + lastXY.getY() + ",";
+		str = str + lastXY.getZ() + " in ";
+		str = str + firstXY.getWorld().getName();
+		return str;
 	}
 }
