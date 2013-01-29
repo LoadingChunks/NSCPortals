@@ -1,6 +1,7 @@
 package net.LoadingChunks.NSCPortals;
 
 import org.bukkit.Location;
+import org.bukkit.World;
 
 public class NSCPortal {
 	private Location firstXY;
@@ -44,6 +45,10 @@ public class NSCPortal {
 	
 	public String getServer() {
 		return this.server;
+	}
+	
+	public World getWorld() {
+		return this.firstXY.getWorld();
 	}
 	
 	public void setServer(String s) {

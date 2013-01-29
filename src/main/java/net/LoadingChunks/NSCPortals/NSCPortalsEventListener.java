@@ -46,6 +46,21 @@ public class NSCPortalsEventListener implements Listener {
 	public void onPlayerMove(PlayerMoveEvent event) {
 		Location loc = event.getPlayer().getLocation();
 
-		
+		for(NSCPortal p : this.plugin.getPortals())
+		{
+			if(p.getWorld() != loc.getWorld())
+				continue;
+			
+			if(p.inPortal(loc))
+			{
+				if(p.isLocal())
+				{
+					event.getPlayer().teleport(p.getExit());
+				} else {
+					this.plugin.getCoilAPI().connectPlayerToServer(event.getPlayer(), p.getServer());
+				}
+				return;
+			}
+		}
 	}
 }

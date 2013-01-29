@@ -18,12 +18,14 @@ package net.LoadingChunks.NSCPortals;
  */
 
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Map.Entry;
+
+import net.LoadingChunks.SpringCoil.api.Coil;
 
 import org.bukkit.Location;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.plugin.PluginManager;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class NSCPortals extends JavaPlugin {
@@ -31,9 +33,7 @@ public class NSCPortals extends JavaPlugin {
 	/* TODO */
 	// Retain Velocity/Relative position
 	// Minecarts
-	// Plugin<->Plugin comms between servers
-	// Look for library to do that for us. - Redis?
-	
+	// Plugin<->Plugin comms between servers	
 
 	//ClassListeners
 	private final NSCPortalsCommandExecutor commandExecutor = new NSCPortalsCommandExecutor(this);
@@ -41,6 +41,8 @@ public class NSCPortals extends JavaPlugin {
 	//ClassListeners
 	
 	private HashMap<String, NSCPortal> portals = new HashMap<String, NSCPortal>();
+	
+	private Coil coil;
 
 	public void onDisable() {
 		// Nothing.
@@ -99,5 +101,25 @@ public class NSCPortals extends JavaPlugin {
 	public void addPortal(String name, NSCPortal p)
 	{
 		this.portals.put(name, p);
+	}
+	
+	public NSCPortal[] getPortals() {
+		return this.portals.values().toArray(new NSCPortal[this.portals.size()]);
+	}
+	
+	public Coil getCoilAPI() {
+		try {
+			if(this.coil == null)
+			{
+				RegisteredServiceProvider<Coil> provider = getServer().getServicesManager().getRegistration(net.LoadingChunks.SpringCoil.api.Coil.class);
+				Coil api = provider.getProvider();
+				this.coil = api;
+			}
+		} catch(Exception e)
+		{
+			this.getLogger().severe("[DIAMONDSHARDS] Something went wrong while trying to register the SpringCoil API!");
+			e.printStackTrace();
+		}
+		return this.coil;
 	}
 }

@@ -27,7 +27,7 @@
 		<dependency>
             <groupId>net.LoadingChunks</groupId>
             <artifactId>SpringCoil</artifactId>
-            <version>0.1-SNAPSHOT</version>
+            <version>0.3-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
 	</dependencies>
