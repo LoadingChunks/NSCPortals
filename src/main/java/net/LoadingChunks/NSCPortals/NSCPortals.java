@@ -74,6 +74,13 @@ public class NSCPortals extends JavaPlugin {
 			ConfigurationSection portal = (ConfigurationSection)e.getValue();
 			
 			this.getLogger().info("Found portal in " + portal.getString("world"));
+			
+			if(this.getServer().getWorld(portal.getString("world")) == null)
+			{
+				this.getLogger().warning("The world in question doesn't exist... you should probably look into that or remove this portal.");
+				continue;
+			}
+			
 
 			NSCPortal tmp = new NSCPortal(
 					new Location(this.getServer().getWorld(portal.getString("world")), portal.getDouble("firstCorner.x"), portal.getDouble("firstCorner.y"), portal.getDouble("firstCorner.z")),
