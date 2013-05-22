@@ -16,6 +16,9 @@ public class NSCPortal {
 	
 	public Boolean isBetween(double first, double second, double test)
 	{
+		if(first == second)
+			second++;
+		
 		return (second > first) ? (Math.floor(test) >= first && Math.ceil(test) <= second) : (Math.floor(test) >= second && Math.ceil(test) <= first);
 	}
 	
