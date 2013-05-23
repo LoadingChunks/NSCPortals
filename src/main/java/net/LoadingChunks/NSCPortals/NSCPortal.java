@@ -10,21 +10,17 @@ public class NSCPortal {
 	private Location exit = null;
 	
 	public NSCPortal(Location firstXY, Location lastXY) {
-		// Buffer them out.
-		if(firstXY.getX() < 0) firstXY.setX(firstXY.getX() - 1);
-		if(firstXY.getY() < 0) firstXY.setY(firstXY.getY() - 1);
-		if(firstXY.getZ() < 0) firstXY.setZ(firstXY.getZ() - 1);
-		
-		if(lastXY.getX() >= 0) lastXY.setX(lastXY.getX() + 1);
-		if(lastXY.getY() >= 0) lastXY.setY(lastXY.getY() + 1);
-		if(lastXY.getZ() >= 0) lastXY.setZ(lastXY.getZ() + 1);		
-		
 		this.firstXY = firstXY;
 		this.lastXY = lastXY;
 	}
 	
 	public Boolean isBetween(double first, double second, double test)
 	{
+		if(first > second) {
+			first++;
+		} else {
+			second++;
+		}
 		return (second > first) ? (Math.floor(test) >= first && Math.ceil(test) <= second) : (Math.floor(test) >= second && Math.ceil(test) <= first);
 	}
 	
