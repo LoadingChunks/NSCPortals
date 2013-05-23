@@ -86,7 +86,8 @@ public class NSCPortals extends JavaPlugin {
 					new Location(this.getServer().getWorld(portal.getString("world")), portal.getDouble("secondCorner.x"), portal.getDouble("secondCorner.y"), portal.getDouble("secondCorner.z")));
 			
 			if(portal.get("exit") != null)
-				tmp.setExit(new Location(this.getServer().getWorld(portal.getString("exit.world")), portal.getDouble("exit.x"), portal.getDouble("exit.y"), portal.getDouble("exit.z")));
+				tmp.setExit(new Location(this.getServer().getWorld(portal.getString("exit.world")), portal.getDouble("exit.x"), portal.getDouble("exit.y"), portal.getDouble("exit.z"), (float)portal.getDouble("exit.yaw"), (float)portal.getDouble("exit.pitch")));
+
 			else if(portal.get("server") != null)
 				tmp.setServer(portal.getString("server"));
 			
