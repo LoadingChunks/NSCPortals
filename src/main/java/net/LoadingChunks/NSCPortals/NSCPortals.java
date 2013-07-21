@@ -71,6 +71,8 @@ public class NSCPortals extends JavaPlugin {
 	public void loadConfig() {
 		ConfigurationSection p = this.getConfig().getConfigurationSection("portals");
 		
+		portals.clear();
+		
 		for(Entry<String, Object> e : p.getValues(false).entrySet())
 		{
 			ConfigurationSection portal = (ConfigurationSection)e.getValue();
