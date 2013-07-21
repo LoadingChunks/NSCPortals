@@ -39,7 +39,7 @@ public class NSCPortalsEventListener implements Listener {
 	public void onPlayerMove(PlayerMoveEvent event) {
 		Location loc = event.getPlayer().getLocation();
 		
-		if(plugin.delayQueue.containsKey(event.getPlayer().getName()) && plugin.delayQueue.get(event.getPlayer().getName()) > (System.currentTimeMillis() + (3L * 1000L))) {
+		if(plugin.delayQueue.containsKey(event.getPlayer().getName()) && plugin.delayQueue.get(event.getPlayer().getName()) > (System.currentTimeMillis())) {
 			return;
 		} else {
 			plugin.delayQueue.remove(event.getPlayer().getName());
@@ -80,6 +80,6 @@ public class NSCPortalsEventListener implements Listener {
 	
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent event) {
-		plugin.delayQueue.put(event.getPlayer().getName(), System.currentTimeMillis() + (5L*1000L)); // Stops insta-TP on join.
+		plugin.delayQueue.put(event.getPlayer().getName(), System.currentTimeMillis() + (7L*1000L)); // Stops insta-TP on join.
 	}
 }
