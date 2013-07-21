@@ -17,11 +17,14 @@ package net.LoadingChunks.NSCPortals;
     along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import java.util.HashMap;
+
 import org.bukkit.Location;
 
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 
 public class NSCPortalsEventListener implements Listener {
@@ -35,6 +38,12 @@ public class NSCPortalsEventListener implements Listener {
 	@EventHandler
 	public void onPlayerMove(PlayerMoveEvent event) {
 		Location loc = event.getPlayer().getLocation();
+		
+		if(plugin.delayQueue.containsKey(event.getPlayer().getName()) && plugin.delayQueue.get(event.getPlayer().getName()) > (System.currentTimeMillis() + (3L * 1000L))) {
+			return;
+		} else {
+			plugin.delayQueue.remove(event.getPlayer().getName());
+		}
 
 		for(NSCPortal p : this.plugin.getPortals())
 		{
@@ -61,8 +70,16 @@ public class NSCPortalsEventListener implements Listener {
 					this.plugin.getCoilAPI().connectPlayerToServer(event.getPlayer(), p.getServer());
 					//this.plugin.getCoilAPI().sendToServerAsPlayer(event.getPlayer(), p.getServer(), "NSCPortals", "tp");
 				}
+				
+				plugin.delayQueue.put(event.getPlayer().getName(), System.currentTimeMillis() + (3L * 1000L));
+				
 				return;
 			}
 		}
+	}
+	
+	@EventHandler
+	public void onPlayerJoin(PlayerJoinEvent event) {
+		plugin.delayQueue.put(event.getPlayer().getName(), System.currentTimeMillis() + (5L*1000L)); // Stops insta-TP on join.
 	}
 }

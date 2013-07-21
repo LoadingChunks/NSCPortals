@@ -42,6 +42,8 @@ public class NSCPortals extends JavaPlugin {
 	
 	private HashMap<String, NSCPortal> portals = new HashMap<String, NSCPortal>();
 	
+	public HashMap<String, Long> delayQueue = new HashMap<String, Long>(); // Don't send them until this has expired, used for join delay and also to stop it spamming Bungee.
+	
 	private Coil coil;
 	
 	private Boolean debug = false;
