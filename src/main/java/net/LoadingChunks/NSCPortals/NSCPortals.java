@@ -98,7 +98,7 @@ public class NSCPortals extends JavaPlugin {
 			if(portal.contains("permission"))
 				tmp.setPermissionNode(portal.getString("permission"));
 			
-			if(portal.contains("no-perm-message))"))
+			if(portal.contains("no-perm-message"))
 				tmp.setNoPermissionMsg(portal.getString("no-perm-message"));
 			
 			addPortal(e.getKey(), tmp);
