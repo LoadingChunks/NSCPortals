@@ -1,6 +1,6 @@
 name: NSCPortals
 main: net.LoadingChunks.NSCPortals.NSCPortals
-version: 0.2
+version: 0.4
 
 commands:
    nsc:

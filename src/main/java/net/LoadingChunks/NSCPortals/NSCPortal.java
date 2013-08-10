@@ -1,13 +1,17 @@
 package net.LoadingChunks.NSCPortals;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.entity.Player;
 
 public class NSCPortal {
 	private Location firstXY;
 	private Location lastXY;
 	private String server = "";
 	private Location exit = null;
+	private String permissionNode = null;
+	private String noPermissionMsg = null;
 	
 	public NSCPortal(Location firstXY, Location lastXY) {
 		this.firstXY = firstXY;
@@ -62,6 +66,26 @@ public class NSCPortal {
 	
 	public void setExit(Location l) {
 		this.exit = l;
+	}
+	
+	public void setPermissionNode(String s) {
+		this.permissionNode = s;
+	}
+	
+	public void setNoPermissionMsg(String s) {
+		this.noPermissionMsg = s;
+	}
+	
+	public boolean checkPermission(Player p) {
+		if(permissionNode == null)
+			return true;
+		
+		if(p.hasPermission(permissionNode))
+			return true;
+		else {
+			p.sendMessage(ChatColor.translateAlternateColorCodes('&', noPermissionMsg));
+			return false;
+		}
 	}
 	
 	public String toString() {

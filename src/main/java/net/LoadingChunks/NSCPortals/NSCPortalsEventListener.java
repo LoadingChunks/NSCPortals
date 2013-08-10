@@ -58,7 +58,7 @@ public class NSCPortalsEventListener implements Listener {
 				if(p.isLocal())
 				{
 					event.getPlayer().teleport(p.getExit());
-				} else {
+				} else if(p.checkPermission(event.getPlayer())) {
 					event.getPlayer().sendMessage("Sending you to " + p.getServer());
 					
 					/* Until I get the forwarder working, gonna have to do this... */
