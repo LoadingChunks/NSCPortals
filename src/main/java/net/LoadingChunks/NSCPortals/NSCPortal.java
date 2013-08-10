@@ -83,7 +83,8 @@ public class NSCPortal {
 		if(p.hasPermission(permissionNode))
 			return true;
 		else {
-			p.sendMessage(ChatColor.translateAlternateColorCodes('&', noPermissionMsg));
+			if(noPermissionMsg != null)
+				p.sendMessage(ChatColor.translateAlternateColorCodes('&', noPermissionMsg));
 			return false;
 		}
 	}
